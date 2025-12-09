@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รวมโปรแกรม หมีๆ ที่ต้องใช้</title>
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="theme-color" content="#FF9A8B">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        
+        /* Header Style */
+        .hero-header {
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Card Style */
+        .menu-card {
+            border: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            text-decoration: none; /* Remove underline from link */
+            display: block;
+            color: #333;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background-color: #fffafb;
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .icon-box {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .menu-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Custom Colors for Icons */
+        .text-pdf { color: #e74c3c; }
+        .text-zip { color: #f1c40f; }
+        .text-img { color: #3498db; }
+
+    </style>
+</head>
+<body>
+
+    <div class="hero-header">
+        <h1><i class="fas fa-paw"></i> รวมโปรแกรม หมีๆ</h1>
+        <p class="mb-0">เครื่องมือสามัญประจำเครื่องที่ต้องใช้</p>
+    </div>
+
+    <div class="container pb-5">
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-12 col-md-4">
+                <a href="https://www.ilovepdf.com/th" target="_blank" class="menu-card">
+                    <div class="card-body">
+                        <div class="icon-box text-pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="menu-title">จัดการไฟล์ PDF</div>
+                        <small class="text-muted">รวม, แยก, แปลงไฟล์ PDF</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <a href="https://th.ilovezip.com/" target="_blank" class="menu-card">
+                    <div class="card-body">
+                        <div class="icon-box text-zip">
+                            <i class="fas fa-file-zipper"></i>
+                        </div>
+                        <div class="menu-title">บีบไฟล์</div>
+                        <small class="text-muted">บีบอัดและแตกไฟล์ออนไลน์</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <a href="https://www.iloveimg.com/th" target="_blank" class="menu-card">
+                    <div class="card-body">
+                        <div class="icon-box text-img">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <div class="menu-title">จัดการรูปภาพ</div>
+                        <small class="text-muted">ปรับขนาด, บีบอัด, ตัดภาพ</small>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 1. SweetAlert Welcome Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'ยินดีต้อนรับชาวหมี!',
+                text: 'ยินดีต้อนรับเข้าสูแหล่งรวมโปแกรมสำหรับ หมีๆ ที่ใช้บ่อย จะมีกาอัพเดทเลื่อยๆ',
+                imageUrl: 'cover.png',
+                // กำหนดความสูงภาพ ให้พอดีกับหน้าจอมือถือ ไม่ยาวเกินไป
+                imageHeight: 300, 
+                imageAlt: 'Welcome Cover',
+                confirmButtonText: 'เริ่มใช้งาน',
+                confirmButtonColor: '#FF6A88',
+                backdrop: `
+                    rgba(0,0,123,0.4)
+                `
+            });
+        });
+
+        // 2. Service Worker Registration (สำหรับ PWA)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('Service Worker Registered!', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
