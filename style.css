@@ -1,0 +1,52 @@
+body {
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 480px; /* ขนาดประมาณมือถือ */
+    border-radius: 15px !important;
+}
+
+/* ส่วนหัว */
+.date-display {
+    font-size: 1rem;
+}
+
+.top-right-summary {
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+/* ช่องใส่เงินขนาดใหญ่ */
+.large-input {
+    font-size: 3rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #dee2e6;
+    border-radius: 0;
+    padding: 20px 0;
+}
+
+.large-input:focus {
+    box-shadow: none;
+    border-bottom-color: #0d6efd;
+}
+
+/* ปรับแต่ง List ใน Modal */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expense-info {
+    flex-grow: 1;
+}
+.expense-actions {
+    flex-shrink: 0;
+}
